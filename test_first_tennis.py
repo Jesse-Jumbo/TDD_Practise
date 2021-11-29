@@ -17,7 +17,9 @@ class TennisTest(unittest.TestCase):
         self.tennis.first_player_score(2)
         self.score_should_be("thirty love")
 
-
+    def test_forty_love(self):
+        self.tennis.first_player_score(3)
+        self.score_should_be("forty love")
 
     def score_should_be(self, expected):
         self.assertEqual(self.tennis.score(), expected)
