@@ -1,5 +1,6 @@
 class Tennis():
     def __init__(self):
+        self.second_player_score_times = 0
         self.first_player_score_times = 0
         self.lookup_score = {
             0: "love",
@@ -9,11 +10,16 @@ class Tennis():
         }
 
     def score(self):
-        if self.first_player_score_times > 0:
+        if self.second_player_score_times == 0 and self.first_player_score_times > 0:
             return f"{self.lookup_score[self.first_player_score_times]} love"
+        if self.first_player_score_times == 0 and self.second_player_score_times > 0:
+            return f"love {self.lookup_score[self.second_player_score_times]}"
         return "love all"
 
     def first_player_score(self):
         self.first_player_score_times += 1
+
+    def second_player_score(self):
+        self.second_player_score_times += 1
 
 
