@@ -30,7 +30,8 @@ class Tennis:
         return self.win_score()
 
     def is_ready_for_game_point(self):
-        is_ready= self.first_player_score_times > 3 or self.second_player_score_times > 3
+        is_ready = self.first_player_score_times > 3 or self.second_player_score_times > 3
+        return is_ready
 
     def win_score(self):
         return f"{self.adv_player()} Win"

@@ -12,21 +12,43 @@ class Tennis():
         }
 
     def score(self):
-        if self.second_player_score_times == 0 and self.first_player_score_times > 0:
-            return f"{self.score_lookup[self.first_player_score_times]} love"
-        if self.first_player_score_times == 0 and self.second_player_score_times > 0:
-            return f"love {self.score_lookup[self.second_player_score_times]}"
-        if self.first_player_score_times == self.second_player_score_times:
-            if self.first_player_score_times >= 3:
-                return "deuce"
-            else:
-                return self.all_score()
-        if self.first_player_score_times == 3 or self.second_player_score_times == 3:
-            if self.first_player_score_times > self.second_player_score_times:
-                return "Tom Advantage"
-            else:
-                return "Joey Advantage"
-        return "love all"
+        if self.is_score_different():
+            return self.adv_state() if self.is_ready_for_game_point() else self.lookup_score()
+        return "deuce" if self.is_deuse() else self.all_score()
+
+    def is_deuse(self):
+        is_deuse = self.first_player_score_times >= 3
+        return is_deuse
+
+    def is_ready_for_game_point(self):
+        is_ready = self.first_player_score_times > 3 or self.second_player_score_times > 3
+        return is_ready
+
+    def is_score_different(self):
+        diff = self.first_player_score_times != self.second_player_score_times
+        return diff
+
+    def lookup_score(self):
+        return f"{self.score_lookup[self.first_player_score_times]} {self.score_lookup[self.second_player_score_times]}"
+
+    def adv_score(self):
+        return f"{self.adv_plyer()} Advantage"
+
+    def adv_state(self):
+        if self.is_adv():
+            return self.adv_score()
+        return self.win_score()
+
+    def win_score(self):
+        return f"{self.adv_plyer()} Win"
+
+    def adv_plyer(self):
+        adv_plyer = self.first_player_name if self.first_player_score_times > self.second_player_score_times else self.second_player_name
+        return adv_plyer
+
+    def is_adv(self):
+        is_adv = abs(self.first_player_score_times - self.second_player_score_times) == 1
+        return is_adv
 
     def all_score(self):
         return f"{(self.score_lookup[self.first_player_score_times])} all"
