@@ -5,7 +5,7 @@ from first_tennis import *
 
 class TennisTest(unittest.TestCase):
     def setUp(self):
-        self.tennis = Tennis()
+        self.tennis = Tennis("Tom", "Joey")
 
     def test_love_all(self):
         self.score_should_be("love all")
@@ -43,6 +43,11 @@ class TennisTest(unittest.TestCase):
     def test_deuce(self):
         self.given_deuce()
         self.score_should_be("deuce")
+
+    def test_first_player_advantage(self):
+        self.given_deuce()
+        self.given_first_player_score_times(1)
+        self.score_should_be("Tom Advantage")
 
     def given_deuce(self):
         self.given_first_player_score_times(3)

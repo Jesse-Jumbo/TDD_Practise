@@ -1,7 +1,9 @@
 class Tennis():
-    def __init__(self):
+    def __init__(self, first_palyer_name, second_palyer_name):
         self.second_player_score_times = 0
         self.first_player_score_times = 0
+        self.first_player_name = first_palyer_name
+        self.second_player_name = second_palyer_name
         self.score_lookup = {
             0: "love",
             1: "fifteen",
@@ -15,10 +17,13 @@ class Tennis():
         if self.first_player_score_times == 0 and self.second_player_score_times > 0:
             return f"love {self.score_lookup[self.second_player_score_times]}"
         if self.first_player_score_times == self.second_player_score_times:
-            if self.first_player_score_times < 3:
-                return self.all_score()
-            else:
+            if self.first_player_score_times >= 3:
                 return "deuce"
+            else:
+                return self.all_score()
+        if self.first_player_score_times > 3:
+            if self.first_player_score_times > self.second_player_score_times:
+                return "Tom Advantage"
         return "love all"
 
     def all_score(self):
