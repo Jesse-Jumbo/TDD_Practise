@@ -1,9 +1,9 @@
 class Tennis():
-    def __init__(self, first_palyer_name, second_palyer_name):
+    def __init__(self, first_player_name, second_player_name):
         self.second_player_score_times = 0
         self.first_player_score_times = 0
-        self.first_player_name = first_palyer_name
-        self.second_player_name = second_palyer_name
+        self.first_player_name = first_player_name
+        self.second_player_name = second_player_name
         self.score_lookup = {
             0: "love",
             1: "fifteen",
@@ -32,7 +32,7 @@ class Tennis():
         return f"{self.score_lookup[self.first_player_score_times]} {self.score_lookup[self.second_player_score_times]}"
 
     def adv_score(self):
-        return f"{self.adv_plyer()} Advantage"
+        return f"{self.adv_player()} Advantage"
 
     def adv_state(self):
         if self.is_adv():
@@ -40,11 +40,11 @@ class Tennis():
         return self.win_score()
 
     def win_score(self):
-        return f"{self.adv_plyer()} Win"
+        return f"{self.adv_player()} Win"
 
-    def adv_plyer(self):
-        adv_plyer = self.first_player_name if self.first_player_score_times > self.second_player_score_times else self.second_player_name
-        return adv_plyer
+    def adv_player(self):
+        adv_player = self.first_player_name if self.first_player_score_times > self.second_player_score_times else self.second_player_name
+        return adv_player
 
     def is_adv(self):
         is_adv = abs(self.first_player_score_times - self.second_player_score_times) == 1

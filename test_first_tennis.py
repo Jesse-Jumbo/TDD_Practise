@@ -59,6 +59,11 @@ class TennisTest(unittest.TestCase):
         self.given_first_player_score_times(2)
         self.score_should_be("Tom Win")
 
+    def test_joey_win(self):
+        self.given_deuce()
+        self.given_second_player_score_times(2)
+        self.score_should_be("Joey Win")
+
     def given_deuce(self):
         self.given_first_player_score_times(3)
         self.given_second_player_score_times(3)
