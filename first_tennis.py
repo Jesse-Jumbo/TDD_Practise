@@ -21,9 +21,11 @@ class Tennis():
                 return "deuce"
             else:
                 return self.all_score()
-        if self.first_player_score_times > 3:
+        if self.first_player_score_times == 3 or self.second_player_score_times == 3:
             if self.first_player_score_times > self.second_player_score_times:
                 return "Tom Advantage"
+            else:
+                return "Joey Advantage"
         return "love all"
 
     def all_score(self):
