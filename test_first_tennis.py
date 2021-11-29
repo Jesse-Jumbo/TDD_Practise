@@ -30,6 +30,11 @@ class TennisTest(unittest.TestCase):
         self.given_second_player_score_times(2)
         self.score_should_be("love thirty")
 
+    def test_fifteen_all(self):
+        self.given_first_player_score_times(1)
+        self.given_second_player_score_times(1)
+        self.score_should_be("fifteen all")
+
     def given_second_player_score_times(self, times):
         for i in range(times):
             self.tennis.second_player_score()
