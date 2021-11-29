@@ -40,7 +40,13 @@ class TennisTest(unittest.TestCase):
         self.given_second_player_score_times(2)
         self.score_should_be("thirty all")
 
+    def test_deuce(self):
+        self.given_deuce()
+        self.score_should_be("deuce")
 
+    def given_deuce(self):
+        self.given_first_player_score_times(3)
+        self.given_second_player_score_times(3)
 
     def given_second_player_score_times(self, times):
         for i in range(times):
