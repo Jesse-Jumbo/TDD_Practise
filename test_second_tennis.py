@@ -7,6 +7,16 @@ class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.tennis = Tennis("Diana", "Diana2")
 
+    def test_second_player_win(self):
+        self.given_second_player_score_times(2)
+        self.given_deuce()
+        self.score_should_be("Diana2 Win")
+
+    def test_first_player_win(self):
+        self.given_first_player_score_times(2)
+        self.given_deuce()
+        self.score_should_be("Diana Win")
+
     def test_second_player_adv(self):
         self.given_second_player_score_times(1)
         self.given_deuce()

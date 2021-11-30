@@ -23,8 +23,13 @@ class Tennis:
                         return f"{self.first_player_name} Adv"
                     else:
                         return f"{self.second_player_name} Adv"
-            if  self.first_player_score == self.second_player_score:
+            if self.first_player_score == self.second_player_score:
                 return "deuce"
+            if abs(self.first_player_score-self.second_player_score)>1:
+                if self.first_player_score > self.second_player_score:
+                    return f"{self.first_player_name} Win"
+                else:
+                    return f"{self.second_player_name} Win"
         return "love all"
 
     def given_first_player_score(self):
