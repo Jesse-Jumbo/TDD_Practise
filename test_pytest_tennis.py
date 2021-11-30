@@ -6,6 +6,10 @@ class TestTennisGame(object):
     def setup_class(self):
         self.tennis = Tennis()
 
+    def test_thirty_love(self):
+        self.given_first_player_score_times(2)
+        assert self.tennis.score() == "thirty love"
+
     def test_fifteen_love(self):
         self.given_first_player_score_times(1)
         assert self.tennis.score() == "fifteen love"
