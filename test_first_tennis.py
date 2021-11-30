@@ -4,10 +4,11 @@ from first_tennis import *
 
 
 class TennisTest(unittest.TestCase):
-    def setUp(self):
+    # 若setUp引發異常，測試框架會認為測試發生錯誤，測試方法不會被運行；若成功運行，無論測試是否通過，tearDown()都會運行
+    def setUp(self):                            # 設置下面每個測試開始前需要執行的指令(tearDown() -> 測試完成後需要執行的指令)
         self.tennis = Tennis("Tom", "Joey")
 
-    def test_love_all(self):
+    def test_love_all(self):                    # test 開頭，告知test runner那些物件方法為定義的測試
         self.score_should_be("love all")
 
     def test_fifteen_love(self):
@@ -77,8 +78,9 @@ class TennisTest(unittest.TestCase):
             self.tennis.first_player_score()
 
     def score_should_be(self, expected):
-        self.assertEqual(self.tennis.score(), expected)
+        self.assertEqual(self.tennis.score(), expected)     # 確認是否為期望的結果( assertTrue()、assertFalse() 用於驗證條件式)
 
 
-
+if __name__ == '__main__':
+    unittest.main()
 
