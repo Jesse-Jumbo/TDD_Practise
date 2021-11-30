@@ -3,7 +3,7 @@ import unittest
 from second_tennis import Tennis
 
 
-class MyTestCase(unittest.TestCase):
+class TennisGameTestCase(unittest.TestCase):
     def setUp(self):
         self.tennis = Tennis("Diana", "Diana2")
 
