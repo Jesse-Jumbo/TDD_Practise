@@ -12,22 +12,27 @@ class Tennis:
         }
 
     def score(self):
-        if self.second_player_score != 0 or self.first_player_score != 0:
+        if self.not_end():
             if self.is_same():
-                if self.second_player_score < 3:
-                    return self.which_all()
-            if self.second_player_score < 3 and self.first_player_score == 0:
-                return f"love {self.lookup_score[self.second_player_score]}"
-            if self.first_player_score < 3 and self.second_player_score == 0:
-                return f"{self.lookup_score[self.first_player_score]} love"
-            if self.is_finally():
-                if self.is_adv():
-                    return self.who_adv()
-            if self.is_deuce():
-                return "deuce"
+                return self.which_all()
+            else:
+                return self.who_love()
+        if self.is_finally():
+            if self.is_adv():
+                return self.who_adv()
             if self.is_win():
                 return self.who_win()
-        return "love all"
+        return "deuce"
+
+    def who_love(self):
+        if self.first_player_score == 0:
+            return f"love {self.lookup_score[self.second_player_score]}"
+        if self.second_player_score == 0:
+            return f"{self.lookup_score[self.first_player_score]} love"
+
+    def not_end(self):
+        not_end = self.first_player_score < 3
+        return not_end
 
     def which_all(self):
         which_all = f"{self.lookup_score[self.first_player_score]} all"
@@ -52,10 +57,6 @@ class Tennis:
     def is_win(self):
         is_win = abs(self.first_player_score - self.second_player_score) > 1
         return is_win
-
-    def is_deuce(self):
-        is_deuce = self.first_player_score == self.second_player_score
-        return is_deuce
 
     def is_finally(self):
         is_finally = self.first_player_score >= 3
