@@ -5,7 +5,17 @@ from second_tennis import Tennis
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.tennis = Tennis()
+        self.tennis = Tennis("Diana", "Diana2")
+
+    def test_second_player_adv(self):
+        self.given_second_player_score_times(1)
+        self.given_deuce()
+        self.score_should_be("Diana2 Adv")
+
+    def test_first_player_adv(self):
+        self.given_first_player_score_times(1)
+        self.given_deuce()
+        self.score_should_be("Diana Adv")
 
     def test_deuce(self):
         self.given_deuce()
