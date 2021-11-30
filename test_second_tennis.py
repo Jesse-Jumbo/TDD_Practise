@@ -7,6 +7,14 @@ class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.tennis = Tennis()
 
+    def test_deuce(self):
+        self.given_deuce()
+        self.score_should_be("deuce")
+
+    def test_love_thirty(self):
+        self.given_second_player_score_times(2)
+        self.score_should_be("love thirty")
+
     def test_love_fifteen(self):
         self.given_second_player_score_times(1)
         self.score_should_be("love fifteen")
@@ -21,6 +29,10 @@ class MyTestCase(unittest.TestCase):
 
     def test_love_all(self):
         self.score_should_be("love all")
+
+    def given_deuce(self):
+        self.given_first_player_score_times(3)
+        self.given_second_player_score_times(3)
 
     def given_second_player_score_times(self, times):
         for i in range(times):
