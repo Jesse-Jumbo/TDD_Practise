@@ -7,6 +7,10 @@ class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.tennis = Tennis()
 
+    def test_thirty_love(self):
+        self.given_first_player_score_times(2)
+        self.score_should_be("thirty love")
+
     def test_fifteen_love(self):
         self.given_first_player_score_times(1)
         self.score_should_be("fifteen love")
