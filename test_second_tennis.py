@@ -47,11 +47,6 @@ class MyTestCase(unittest.TestCase):
         self.given_first_player_score_times(1)
         self.score_should_be("fifteen love")
 
-    def test_forty_all(self):
-        self.given_first_player_score_times(2)
-        self.given_second_player_score_times(3)
-        self.score_should_be("forty all")
-
     def test_thirty_all(self):
         self.given_first_player_score_times(2)
         self.given_second_player_score_times(2)

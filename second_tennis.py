@@ -13,6 +13,9 @@ class Tennis:
 
     def score(self):
         if self.second_player_score != 0 or self.first_player_score != 0:
+            if self.is_same():
+                if self.second_player_score < 3:
+                    return self.which_all()
             if self.second_player_score < 3 and self.first_player_score == 0:
                 return f"love {self.lookup_score[self.second_player_score]}"
             if self.first_player_score < 3 and self.second_player_score == 0:
@@ -25,6 +28,14 @@ class Tennis:
             if self.is_win():
                 return self.who_win()
         return "love all"
+
+    def which_all(self):
+        which_all = f"{self.lookup_score[self.first_player_score]} all"
+        return which_all
+
+    def is_same(self):
+        is_same = self.first_player_score == self.second_player_score
+        return is_same
 
     def who_win(self):
         if self.first_player_score > self.second_player_score:
