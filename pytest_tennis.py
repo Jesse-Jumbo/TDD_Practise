@@ -10,12 +10,12 @@ class Tennis:
         }
 
     def score(self):
-        if self.first_player_score_times != 0:
+        if self.first_player_score_times > 0:
             return f"{self.lookup_score[self.first_player_score_times]} love"
-        if self.second_player_score_times != 0:
-            return f"love {self.lookup_score[self.first_player_score_times]}"
-        return "love all"
-
+        if self.second_player_score_times > 0:
+            return f"love {self.lookup_score[self.second_player_score_times]}"
+        if self.first_player_score_times == self.second_player_score_times:
+            return "love all"
 
     def given_first_player_score(self):
         self.first_player_score_times += 1

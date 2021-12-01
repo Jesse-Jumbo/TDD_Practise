@@ -3,24 +3,27 @@ from pytest_tennis import Tennis
 
 
 class TestTennisGame(object):
-    def setup_class(self):
+    def setup(self):
         self.tennis = Tennis()
 
+    def test_love_thirty(self):
+        self.given_second_player_score_times(2)
+        self.score_should_be("love thirty")
 
     def test_love_fifteen(self):
         self.given_second_player_score_times(1)
-        assert self.tennis.score() == "love fifteen"
+        self.score_should_be("love fifteen")
 
     def test_thirty_love(self):
         self.given_first_player_score_times(2)
-        assert self.tennis.score() == "thirty love"
+        self.score_should_be("thirty love")
 
     def test_fifteen_love(self):
         self.given_first_player_score_times(1)
-        assert self.tennis.score() == "fifteen love"
+        self.score_should_be("fifteen love")
 
     def test_love_all(self):
-        assert self.tennis.score() == "love all"
+        self.score_should_be("love all")
 
     def given_first_player_score_times(self, times):
         for i in range(times):
@@ -29,4 +32,8 @@ class TestTennisGame(object):
     def given_second_player_score_times(self, times):
         for i in range(times):
             self.tennis.given_second_player_score()
+
+    def score_should_be(self, expected):
+        assert self.tennis.score() == expected
+
 
