@@ -6,6 +6,10 @@ class TestTennisGame(object):
     def setup(self):
         self.tennis = Tennis()
 
+    def test_deuce(self):
+        self.given_deuce()
+        self.score_should_be("deuce")
+
     def test_love_thirty(self):
         self.given_second_player_score_times(2)
         self.score_should_be("love thirty")
@@ -22,8 +26,22 @@ class TestTennisGame(object):
         self.given_first_player_score_times(1)
         self.score_should_be("fifteen love")
 
+    def test_thirty_all(self):
+        self.given_first_player_score_times(2)
+        self.given_second_player_score_times(2)
+        self.score_should_be("thirty_all")
+
+    def test_fifteeen_all(self):
+        self.given_first_player_score_times(1)
+        self.given_second_player_score_times(1)
+        self.score_should_be("fifteen all")
+
     def test_love_all(self):
         self.score_should_be("love all")
+
+    def given_deuce(self):
+        self.given_first_player_score_times(3)
+        self.given_second_player_score_times(3)
 
     def given_first_player_score_times(self, times):
         for i in range(times):
