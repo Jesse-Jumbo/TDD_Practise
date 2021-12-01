@@ -13,28 +13,63 @@ class Tennis:
         }
 
     def score(self):
-        if self.first_player_score_times != self.second_player_score_times:
-            if self.second_player_score_times == 0:
-                return f"{self.lookup_score[self.first_player_score_times]} love"
-            if self.first_player_score_times == 0:
-                return f"love {self.lookup_score[self.second_player_score_times]}"
-            if self.first_player_score_times >= 3:
-                if abs(self.first_player_score_times-self.second_player_score_times) == 1:
-                    if self.first_player_score_times > self.second_player_score_times:
-                        return f"{self.first_player_name} Adv"
-                    else:
-                        return f"{self.second_player_name} Adv"
-                if abs(self.first_player_score_times-self.second_player_score_times) > 1:
-                    if self.first_player_score_times > self.second_player_score_times:
-                        return f"{self.first_player_name} Win"
-                    else:
-                        return f"{self.second_player_name} Win"
-
-        if self.first_player_score_times == self.second_player_score_times:
-            if self.first_player_score_times == 3:
-                return "deuce"
+        if self.is_not_end():
+            if self.is_same():
+                return self.which_all()
             else:
-                return f"{self.lookup_score[self.first_player_score_times]} all"
+                return self.which_love()
+        if self.is_finally():
+            if self.is_adv():
+                return self.who_adv()
+            if self.is_win():
+                return self.who_win()
+            return "deuce"
+
+    def is_not_end(self):
+        is_not_end = self.first_player_score_times < 3
+        return is_not_end
+
+    def which_all(self):
+        which_all = f"{self.lookup_score[self.first_player_score_times]} all"
+        return which_all
+
+    def is_same(self):
+        is_same = self.first_player_score_times == self.second_player_score_times
+        return is_same
+
+    def which_love(self):
+        if self.second_player_score_times == 0:
+            return f"{self.lookup_score[self.first_player_score_times]} love"
+        if self.first_player_score_times == 0:
+            return f"love {self.lookup_score[self.second_player_score_times]}"
+
+    def who_win(self):
+        if self.first_player_score_times > self.second_player_score_times:
+            return f"{self.first_player_name} Win"
+        else:
+            return f"{self.second_player_name} Win"
+
+    def who_adv(self):
+        if self.first_player_score_times > self.second_player_score_times:
+            return f"{self.first_player_name} Adv"
+        else:
+            return f"{self.second_player_name} Adv"
+
+    def is_win(self):
+        is_win = abs(self.first_player_score_times-self.second_player_score_times) > 1
+        return is_win
+
+    def is_adv(self):
+        is_adv = abs(self.first_player_score_times-self.second_player_score_times) == 1
+        return is_adv
+
+    def is_finally(self):
+        is_finally = self.first_player_score_times >= 3
+        return is_finally
+
+    def is_different(self):
+        is_different = self.first_player_score_times != self.second_player_score_times
+        return is_different
 
     def given_first_player_score(self):
         self.first_player_score_times += 1
