@@ -4,7 +4,17 @@ from pytest_tennis import Tennis
 
 class TestTennisGame(object):
     def setup(self):
-        self.tennis = Tennis()
+        self.tennis = Tennis("Diana", "Diana2")
+
+    def test_second_player_adv(self):
+        self.given_deuce()
+        self.given_second_player_score_times(1)
+        self.score_should_be("Diana2 Adv")
+
+    def test_first_player_adv(self):
+        self.given_deuce()
+        self.given_first_player_score_times(1)
+        self.score_should_be("Diana Adv")
 
     def test_deuce(self):
         self.given_deuce()
