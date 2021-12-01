@@ -6,6 +6,16 @@ class TestTennisGame(object):
     def setup(self):
         self.tennis = Tennis("Diana", "Diana2")
 
+    def test_first_player_adv(self):
+        self.given_deuce()
+        self.given_first_player_score_times(2)
+        self.score_should_be("Diana Win")
+
+    def test_second_player_win(self):
+        self.given_deuce()
+        self.given_second_player_score_times(2)
+        self.score_should_be("Diana2 Win")
+
     def test_second_player_adv(self):
         self.given_deuce()
         self.given_second_player_score_times(1)

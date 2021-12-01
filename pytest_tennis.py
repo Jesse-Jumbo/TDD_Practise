@@ -24,6 +24,11 @@ class Tennis:
                         return f"{self.first_player_name} Adv"
                     else:
                         return f"{self.second_player_name} Adv"
+                if abs(self.first_player_score_times-self.second_player_score_times) > 1:
+                    if self.first_player_score_times > self.second_player_score_times:
+                        return f"{self.first_player_name} Win"
+                    else:
+                        return f"{self.second_player_name} Win"
 
         if self.first_player_score_times == self.second_player_score_times:
             if self.first_player_score_times == 3:
